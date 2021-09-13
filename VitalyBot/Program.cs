@@ -10,16 +10,16 @@ namespace VitalyBot
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            SetWebHook(host);
+            SetWebHookAsync(host);
             host.Run();
         }
 
-        private static void SetWebHook(IHost host)
+        private static async void SetWebHookAsync(IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
                 var sanSanychBot = scope.ServiceProvider.GetRequiredService<SanSanychBot>();
-                sanSanychBot.SetWebHook();
+                await sanSanychBot.SetWebhookAsync();
             }
         }
 

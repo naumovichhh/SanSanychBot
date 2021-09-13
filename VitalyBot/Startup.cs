@@ -21,7 +21,7 @@ namespace VitalyBot
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddScoped<SanSanychBot>();
             services.AddSwaggerGen(c =>
             {

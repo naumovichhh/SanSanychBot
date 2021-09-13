@@ -32,7 +32,7 @@ namespace VitalyBot.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok("OHSHITMANGODDAMNSON");
+            return Ok(await bot.GetWebhookAsync());
         }
     }
 }
