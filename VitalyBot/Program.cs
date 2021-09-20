@@ -9,18 +9,8 @@ namespace VitalyBot
     {
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
-            SetWebHookAsync(host);
-            host.Run();
-        }
-
-        private static async void SetWebHookAsync(IHost host)
-        {
-            using (var scope = host.Services.CreateScope())
-            {
-                var sanSanychBot = scope.ServiceProvider.GetRequiredService<SanSanychBot>();
-                await sanSanychBot.SetWebhookAsync();
-            }
+            CreateHostBuilder(args).Build().Run();
+            args = new string[] { "1" };
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -32,6 +22,7 @@ namespace VitalyBot
                 .ConfigureServices(services =>
                 {
                     services.AddScoped<SanSanychBot>();
+                    services.AddHostedService<WebhookConfig>();
                 });
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Telegram.Bot;
@@ -18,19 +16,11 @@ namespace VitalyBot.Bot
             Configuration = configuration;
             commands.Add(new StartCommand());
             commands.Add(new ProbabilityCommand());
-            botClient = new TelegramBotClient(Configuration.GetSection("BotConfig").GetValue<string>("Token"));
+            string token = Configuration.GetSection("BotConfig").GetValue<string>("Token");
+            botClient = new TelegramBotClient(token);
         }
 
         public IConfiguration Configuration { get; set; }
-
-        public async Task SetWebhookAsync()
-        {
-            TelegramBotClient botClient = new TelegramBotClient(
-                Configuration.GetSection("BotConfig").GetValue<string>("Token")
-            );
-            string hook = Configuration.GetSection("BotConfig").GetValue<string>("Url") + "/api/update";
-            await botClient.SetWebhookAsync(hook);
-        }
 
         public async Task<WebhookInfo> GetWebhookAsync()
         {

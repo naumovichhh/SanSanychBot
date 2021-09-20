@@ -7,8 +7,6 @@ using VitalyBot.Bot;
 
 namespace VitalyBot.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class UpdateController : ControllerBase
     {
         private SanSanychBot bot;
