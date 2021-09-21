@@ -49,6 +49,7 @@ namespace VitalyBot
             {
                 string token = Configuration.GetSection("BotConfig").GetValue<string>("Token");
                 endpoints.MapControllerRoute("webhook", $"api/update/{token}", new { controller = "Update", action = "Post" });
+                endpoints.MapControllerRoute("webhook", $"api/info/{token}", new { controller = "Update", action = "Get" });
             });
         }
     }
